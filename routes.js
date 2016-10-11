@@ -1,7 +1,9 @@
-const Controller = require('./controller.js');
+const Accounts = require('./app/controllers/accounts.js');
 
 module.exports = [
 
-  { method: 'GET', path: '/', config: Controller.index },
+  { method: 'GET', path: '/', config: Accounts.index },
+  { method: 'GET', path: '/signup', config: Accounts.signup },
+  { method: 'GET', path: '/login', config: Accounts.login },
 
 ];
