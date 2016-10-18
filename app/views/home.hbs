@@ -1,19 +1,18 @@
+<!-- Logged-in user's home page -->
 {{> homemenu }}
 
 <section class="ui raised segment">
-  <div class="ui two column grid">
-    <div class="ui column">
-      <div class="ui row">
-        <h3>Successfully logged in</h3>
-      </div>
-      <div class="ui row">
-        <div class="field">
-          <textarea></textarea>
-        </div>
-      </div>
+  <h2>User's MyTweet Page</h2>
+  <button class="ui violet basic button">My public page</button>
+  <div class="ui horizontal divider header">
+    MyTweet  <i class="comments icon"></i>Feed
+  </div>
+  <div class="ui two column stackable grid">
+    <div class="ui six wide column">
+      {{> newtweet }}
     </div>
-    <div class="ui column">
-
+    <div class="ui ten wide column">
+      {{> tweetview }}
     </div>
   </div>
 </section>
