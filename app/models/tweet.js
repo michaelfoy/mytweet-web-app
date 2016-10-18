@@ -1,3 +1,5 @@
+'use strict'
+
 const mongoose = require('mongoose');
 
 const tweetSchema = mongoose.Schema({
@@ -9,5 +11,5 @@ const tweetSchema = mongoose.Schema({
   },
 });
 
-const Donation = mongoose.model('Tweet', tweetSchema);
+const Tweet = mongoose.model('Tweet', tweetSchema);
 module.exports = Tweet;
