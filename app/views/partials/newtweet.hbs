@@ -1,7 +1,14 @@
 <!-- Form to create a new tweet-->
-<div class="ui form">
-  <div class="field">
-    <textarea rows="3" maxlength="140"placeholder="What's on your mind?" style="resize: none"></textarea>
+<div class="ui accordion">
+  <div class="title">
+    <i class="huge circular inverted violet comments icon"></i>
   </div>
-  <button class="ui violet basic button"><h3>Tweet</h3></button>
+  <div class="content">
+    <form action="/newTweet" method="POST" class="ui form">
+      <div class="field">
+        <textarea rows="6" maxlength="140" placeholder="What's on your mind?" style="resize: none"></textarea>
+      </div>
+      <button class="ui violet basic button"><h3>Post Tweet</h3></button>
+    </form>
+  </div>
 </div>

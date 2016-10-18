@@ -3,3 +3,9 @@ exports.home = {
     reply.view('home', { title: 'MyTweet' });
   },
 };
+
+exports.newTweet = {
+  handler: (request, reply) => {
+
+  },
+};
