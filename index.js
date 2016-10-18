@@ -3,9 +3,7 @@
 const Hapi = require('hapi');
 
 var server = new Hapi.Server();
-server.bind({
-  users: [],
-});
+require('./app/models/db');
 
 server.connection({ port: process.env.PORT || 4000 });
 
