@@ -12,6 +12,8 @@ if (process.env.NODE_ENV === 'production') {
 
 mongoose.connect(dbURI);
 
+//mongoose.connection.db.dropDatabase();
+
 mongoose.connection.on('connected', function () {
   console.log('Mongoose connected to ' + dbURI);
 });

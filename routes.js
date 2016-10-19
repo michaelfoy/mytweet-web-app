@@ -11,5 +11,6 @@ module.exports = [
   { method: 'POST', path: '/register', config: Accounts.register },
 
   { method: 'GET', path: '/home', config: MyTweet.home },
+  { method: 'POST', path: '/newTweet', config: MyTweet.newTweet },
 
 ];
