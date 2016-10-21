@@ -17,6 +17,7 @@ exports.home = {
       reply.view('home', {
         title: 'MyTweet',
         tweets: tweets,
+        public: true,
       });
     }).catch(err => {
       reply.redirect('/');
