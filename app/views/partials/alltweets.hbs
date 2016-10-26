@@ -1,0 +1,22 @@
+{{#each tweets}}
+  <!-- Displays a view of a single tweet -->
+  <section class="ui stacked segment">
+    <div class="ui two column grid">
+      <div class="ui row">
+        <div class="ui four wide column">
+          <a href="/publicprofilepage">
+            <h3>{{tweeter.firstName}} {{tweeter.lastName}}</h3>
+          </a>
+        </div>
+        <div class="ui column">
+          <h5>{{date}}</h5>
+        </div>
+      </div>
+      <div class="ui row">
+        <div class="ui right floated twelve wide column">
+          {{content}}
+        </div>
+      </div>
+    </div>
+  </section>
+{{/each}}

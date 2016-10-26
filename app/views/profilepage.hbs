@@ -2,19 +2,20 @@
 {{> homemenu }}
 
 <section class="ui raised segment">
-  <h2>{{name}}'s MyTweet Page</h2>
-  <a href="/profilepage">
-  <button class="ui violet basic button">My Profile Page</button>
-    </a>
+  <h2>{{name}}'s Public MyTweet Page</h2>
   <div class="ui horizontal divider header">
-    MyTweet  <i class="comments icon"></i>Feed
+    {{name}}'s  <i class="comments icon"></i>MyTweets
   </div>
   <div class="ui three column stackable grid">
     <div class="ui four wide center aligned column">
       {{> newtweet }}
     </div>
     <div class="ui eight wide column">
-      {{> alltweets}}
+      {{#if public}}
+        {{> publicprofiletweets}}
+      {{else}}
+        {{> privateprofiletweets}}
+      {{/if}}
     </div>
     <div class="ui four wide column">
     </div>

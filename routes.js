@@ -12,6 +12,6 @@ module.exports = [
 
   { method: 'GET', path: '/home', config: MyTweet.home },
   { method: 'POST', path: '/newTweet', config: MyTweet.newTweet },
-  //{ method: 'GET', path: '/publicprofilepage', config: MyTweet.publicprofile },
+  { method: 'GET', path: '/profilepage', config: MyTweet.profilepage },
 
 ];
