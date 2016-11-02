@@ -1,12 +1,12 @@
 <!-- Tweet List for logged-in user, including deletion options -->
 <section>
-
+<form method="POST" action="/deleteTweets">
   <!-- Checkbox allowing allTweet selection & delete button -->
   <div class="ui two column grid">
     <div class="ui left bottom aligned column">
-      <div class="ui slider checkbox">
+      <div class="ui slider checkbox all">
         <label>Select all MyTweets</label>
-        <input type="checkbox" name="delete">
+        <input id="selectall" type="checkbox">
       </div>
     </div>
     <div class="ui right aligned column">
@@ -32,7 +32,7 @@
           <div class="ui right aligned column">
             <div class="ui slider checkbox">
               <label><i class="mini circular inverted red close icon"></i></label>
-              <input type="checkbox" name="delete">
+              <input type="checkbox" name="{{_id}}">
             </div>
           </div>
         </div>
@@ -46,4 +46,5 @@
       </div>
     </section>
   {{/each}}
+</form>
 </section>

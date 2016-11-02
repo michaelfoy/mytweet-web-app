@@ -106,6 +106,15 @@ exports.newTweet = {
   },
 };
 
+exports.delete = {
+  handler: function (request, reply) {
+    const data = request.payload;
+    console.log(Object.keys(data));
+    reply.redirect('/home');
+
+  }
+}
+
 function getDate() {
   let date = new Date();
   let dd = date.getDate();

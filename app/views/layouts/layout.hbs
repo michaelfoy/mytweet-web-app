@@ -18,7 +18,16 @@
   $('.ui.accordion')
       .accordion();
 
-  $('.ui.slider.checkbox').checkbox('unchecked', 'unchecked', 'checked');
+  $('.ui.slider.checkbox').checkbox();
+
+  $('#selectall').change(function() {
+    const checkboxes = $(this).closest('form').find(':checkbox');
+    if($(this).is(':checked')) {
+      checkboxes.prop('checked', true);
+    } else {
+      checkboxes.prop('checked', false);
+    }
+  });
 </script>
 </body>
 </html>
