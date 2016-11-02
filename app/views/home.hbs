@@ -2,13 +2,19 @@
 {{> homemenu }}
 
 <section class="ui raised segment">
+
+  <!-- Header -->
   <h2>{{user.firstName}}'s Homepage</h2>
   <a href="/profilepage/{{user.email}}">
-  <button class="ui violet basic button">My Profile Page</button>
-    </a>
+    <button class="ui violet basic button">My Profile Page</button>
+  </a>
+
+  <!-- Divider between header and main content -->
   <div class="ui horizontal divider header">
     MyTweet  <i class="comments icon"></i>Feed
   </div>
+
+  <!-- Main content -->
   <div class="ui three column stackable grid">
     <div class="ui four wide center aligned column">
       {{> newtweet }}

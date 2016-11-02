@@ -1,15 +1,24 @@
-<!-- Logged-in user's home page -->
+<!-- An individual user's profile page to display their tweets -->
 {{> homemenu }}
 
 <section class="ui raised segment">
+
+  <!-- Header -->
   <h2>{{name}}'s Public MyTweet Page</h2>
+
+  <!-- Divider between Header and Main content -->
   <div class="ui horizontal divider header">
     {{name}}'s  <i class="comments icon"></i>MyTweets
   </div>
+
+  <!-- Main content -->
   <div class="ui three column stackable grid">
     <div class="ui four wide center aligned column">
       {{> newtweet }}
     </div>
+
+    <!-- if this user is not logged in, displays public tweetlist
+         otherwise, displays private tweetlist -->
     <div class="ui eight wide column">
       {{#if public}}
         {{> publicprofiletweets}}
