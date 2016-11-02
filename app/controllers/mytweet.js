@@ -6,10 +6,13 @@ exports.home = {
   handler: function (request, reply) {
     let foundUser;
     const userEmail = request.auth.credentials.loggedInUser;
+
     User.findOne({email: userEmail}).then(user => {
       return foundUser = user;
+
     }).then(user => {
       Tweet.find({}).populate('tweeter').then(tweets => {
+
         tweets.sort(function (a, b) {
           if (a.date > b.date) {
             return -1;
@@ -18,6 +21,7 @@ exports.home = {
           }
           return 0;
         });
+
         reply.view('home', {
           title: 'MyTweet',
           tweets: tweets,
@@ -37,13 +41,19 @@ exports.home = {
 
 exports.profilepage = {
   handler: function (request, reply) {
-    let userTweets
-    Tweet.find({}).populate('tweeter').then(tweets => {
-      for (i = 0; i < tweets.length; i++) {
-        if (user._id === tweets.tweeter) {
-          userTweets.push(tweet[0]);
-        }
-      }
+    let userTweets = [];
+    let foundUser;
+    const userEmail = request.auth.credentials.loggedInUser;
+
+    User.findOne({email: userEmail}).then(user => {
+      return foundUser = user;
+
+    }).then(user => {
+      return Tweet.find({tweeter: user._id})
+
+    }).then(userTweets => {
+
+      // Sorts a user's tweets
       userTweets.sort(function (a, b) {
         if (a.date > b.date) {
           return -1;
@@ -53,23 +63,25 @@ exports.profilepage = {
         }
         return 0;
       });
-      reply.view('home', {
-        title: 'MyTweet',
+
+      reply.view('profilepage', {
+        title: 'MyTweet Profile Page',
         tweets: userTweets,
-        general: true,
-        name: 'bob',
+        public: true,
+        name: foundUser.firstName,
       });
     }).catch(err => {
-      console.Log("Unable to get tweets from db");
+      console.Log("Unable to get logged in user tweets");
       reply.redirect('/');
     });
-  }
+  },
 };
+
 
 exports.newTweet = {
   handler: (request, reply) => {
     const userEmail = request.auth.credentials.loggedInUser;
-    User.findOne({ email: userEmail }).then(user => {
+    User.findOne({email: userEmail}).then(user => {
       let data = request.payload;
       const tweet = new Tweet(data);
       tweet.tweeter = user._id;
@@ -92,7 +104,7 @@ function getDate() {
   const yy = date.getFullYear();
 
   const nums = [mm, dd, hh, min];
-  for ( let i = 0; i <  nums.length; i++) {
+  for (let i = 0; i < nums.length; i++) {
     if (nums[i] < 10) {
       nums[i] = '0' + nums[i]
     }
