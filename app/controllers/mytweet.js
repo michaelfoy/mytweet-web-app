@@ -26,7 +26,7 @@ exports.home = {
           title: 'MyTweet',
           tweets: tweets,
           general: true,
-          name: foundUser.firstName,
+          user: foundUser,
         });
       }).catch(err => {
         console.Log("Unable to get tweets from db");
@@ -41,11 +41,22 @@ exports.home = {
 
 exports.profilepage = {
   handler: function (request, reply) {
+    let publicPage = true;
+    let findEmail;
+    let data = request.params.email;
     let userTweets = [];
     let foundUser;
-    const userEmail = request.auth.credentials.loggedInUser;
+    const loggedInUserEmail = request.auth.credentials.loggedInUser;
 
-    User.findOne({email: userEmail}).then(user => {
+    if (loggedInUserEmail === data) {
+      publicPage = false;
+      findEmail = loggedInUserEmail;
+    } else {
+      publicPage = true;
+      findEmail = data;
+    }
+
+    User.findOne({email: findEmail}).then(user => {
       return foundUser = user;
 
     }).then(user => {
@@ -67,7 +78,7 @@ exports.profilepage = {
       reply.view('profilepage', {
         title: 'MyTweet Profile Page',
         tweets: userTweets,
-        public: true,
+        public: publicPage,
         name: foundUser.firstName,
       });
     }).catch(err => {
