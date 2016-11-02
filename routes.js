@@ -13,7 +13,7 @@ module.exports = [
   { method: 'GET', path: '/home', config: MyTweet.home },
   { method: 'POST', path: '/newTweet', config: MyTweet.newTweet },
   { method: 'GET', path: '/profilepage/{email}', config: MyTweet.profilepage },
-  { method: 'POST', path: '/deleteTweets', config: MyTweet.delete },
+  { method: 'POST', path: '/deleteTweets/{email}', config: MyTweet.delete },
 
 
 ];

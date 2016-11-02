@@ -79,7 +79,7 @@ exports.profilepage = {
         title: 'MyTweet Profile Page',
         tweets: userTweets,
         public: publicPage,
-        name: foundUser.firstName,
+        user: foundUser,
       });
     }).catch(err => {
       console.Log("Unable to get logged in user tweets");
@@ -108,12 +108,20 @@ exports.newTweet = {
 
 exports.delete = {
   handler: function (request, reply) {
+    const userEmail = request.params.email;
     const data = request.payload;
-    console.log(Object.keys(data));
-    reply.redirect('/home');
+    const tweetsArray = Object.keys(data);
+    for(let i = 0; i < tweetsArray.length; i++) {
+      let id = tweetsArray[i];
+      Tweet.findOneAndRemove({ _id: id }, function(err) {
+        if (err) throw err;
+        console.log('Tweet deleted: ' + id);
+      });
+    }
+    reply.redirect('/profilepage/' + userEmail);
 
   }
-}
+};
 
 function getDate() {
   let date = new Date();
