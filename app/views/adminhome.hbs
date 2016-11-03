@@ -50,12 +50,12 @@
     <div class="ui six wide column">
 
       <!-- Remove tweets for an individual user -->
-      <h3>Remove MyTweets for a user</h3>
+      <h3>Remove a user's MyTweets</h3>
       <form class="ui form" method="POST" action="/selectUser">
         <div class="ui two column grid">
           <div class="ui left aligned column">
             <select name="user" class="ui dropdown">
-              <option selected="selected" disabled="disabled">{{userName}}</option>
+              <option selected="selected" disabled="disabled">Name</option>
               {{#each users}}
                 <option value="{{_id}}">{{firstName}} {{lastName}}</option>
               {{/each}}
@@ -67,7 +67,7 @@
         </div>
       </form>
 
-      <!-- Accordian view form, exposed when button clicked -->
+      <!-- Accordian view form, exposed when select user button clicked -->
       <div class="content">
         <div class="ui grid">
           <div class="ui sixteen wide column">
@@ -94,7 +94,7 @@
           </div>
         </div>
       </div>
+
     </div>
-  </div>
   </div>
 </section>

@@ -48,6 +48,22 @@ exports.deleteuser = {
   },
 };
 
+exports.deletetweets = {
+  handler: function (request, reply) {
+    const data = request.payload;
+    const tweetsArray = Object.keys(data);
+    console.log(tweetsArray);
+
+    for(let i = 0; i < tweetsArray.length; i++) {
+      Tweet.findByIdAndRemove(tweetsArray[i], function(err) {
+        if (err) throw err;
+        console.log('Tweet deleted: ' + tweetsArray[i]);
+      });
+    }
+    reply.redirect('/admin');
+  },
+};
+
 exports.register = {
   handler: function (request, reply) {
     const user = new User(request.payload);
@@ -94,10 +110,3 @@ exports.selectUser = {
     }
   }
 };
-
-exports.test = {
-  handler: function (request, reply) {
-    const userTweets = request.params.tweets;
-    console.log(userTweets);
-  }
-}
