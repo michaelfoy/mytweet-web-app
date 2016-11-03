@@ -110,16 +110,17 @@ exports.delete = {
   handler: function (request, reply) {
     const userEmail = request.params.email;
     const data = request.payload;
+    console.log(data);
     const tweetsArray = Object.keys(data);
+    console.log(tweetsArray);
+
     for(let i = 0; i < tweetsArray.length; i++) {
-      let id = tweetsArray[i];
-      Tweet.findOneAndRemove({ _id: id }, function(err) {
+      Tweet.findByIdAndRemove(tweetsArray[i], function(err) {
         if (err) throw err;
-        console.log('Tweet deleted: ' + id);
+        console.log('Tweet deleted: ' + tweetsArray[i]);
       });
     }
     reply.redirect('/profilepage/' + userEmail);
-
   }
 };
 

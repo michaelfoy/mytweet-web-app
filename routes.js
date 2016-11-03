@@ -1,5 +1,6 @@
 const Accounts = require('./app/controllers/accounts.js');
-const MyTweet = require('./app/controllers/mytweet.js')
+const MyTweet = require('./app/controllers/mytweet.js');
+const Admin = require('./app/controllers/admin.js');
 
 module.exports = [
 
@@ -14,6 +15,9 @@ module.exports = [
   { method: 'POST', path: '/newTweet', config: MyTweet.newTweet },
   { method: 'GET', path: '/profilepage/{email}', config: MyTweet.profilepage },
   { method: 'POST', path: '/deleteTweets/{email}', config: MyTweet.delete },
+
+  { method: 'GET', path: '/admin', config: Admin.home },
+  { method: 'POST', path: '/deleteUser', config: Admin.deleteuser },
 
 
 ];

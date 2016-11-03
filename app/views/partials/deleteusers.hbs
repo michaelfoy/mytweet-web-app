@@ -1,0 +1,41 @@
+<!-- List of users, including deletion options -->
+<section>
+  <form method="POST" action="/deleteUser">
+    <!-- Checkbox allowing allUser selection & delete button -->
+    <div class="ui two column grid">
+      <div class="ui left bottom aligned column">
+        <div class="ui slider checkbox all">
+          <label>Select all Users</label>
+          <input id="selectall" type="checkbox">
+        </div>
+      </div>
+      <div class="ui right aligned column">
+        <a href="/">
+          <button class="ui red basic button">Delete User</button>
+        </a>
+      </div>
+    </div>
+
+    <!-- List of all the user's tweet's -->
+    {{#each users}}
+      <!-- Displays a view of a single user -->
+      <section class="ui segment">
+        <div class="ui two column grid">
+          <div class="ui row">
+            <div class="ui four wide column">
+              <h5>{{firstName}} {{lastName}}</h5>
+            </div>
+
+            <!-- Checkbox for deletion selection -->
+            <div class="ui right aligned column">
+              <div class="ui slider checkbox">
+                <label><i class="mini circular inverted red close icon"></i></label>
+                <input type="checkbox" name="{{_id}}">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    {{/each}}
+  </form>
+</section>
