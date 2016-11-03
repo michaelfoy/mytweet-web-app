@@ -43,6 +43,18 @@ exports.deleteuser = {
         reply.redirect('/admin');
       });
     };
-    reply.view('adminhome', {title: 'Administrator'});
+    reply.redirect('/admin');
+  },
+};
+
+exports.register = {
+  handler: function (request, reply) {
+    const user = new User(request.payload);
+    user.save().then(newUser => {
+      reply.redirect('/admin');
+    }).catch(err => {
+      reply.redirect('/');
+
+    });
   },
 };

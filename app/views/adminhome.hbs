@@ -15,6 +15,22 @@
   <div class="ui two column stackable grid">
     <div class="ui six wide column">
       {{> deleteusers}}
+      <div class="ui accordion">
+        <div class="title">
+          <button class="ui violet basic button">Add New User</button>
+        </div>
+        <div class="content">
+          <div class="ui grid">
+            <div class="ui sixteen wide column">
+              <div class="ui stacked fluid form segment">
+                <form action="/adminregister" method="POST">
+                  {{> registeruser }}
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="ui four wide column">
     </div>

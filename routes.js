@@ -18,6 +18,7 @@ module.exports = [
 
   { method: 'GET', path: '/admin', config: Admin.home },
   { method: 'POST', path: '/deleteUser', config: Admin.deleteuser },
+  { method: 'POST', path: '/adminregister', config: Admin.register },
 
 
 ];

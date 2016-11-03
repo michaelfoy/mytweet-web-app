@@ -31,6 +31,7 @@ exports.authenticate = {
           request.cookieAuth.set({
             loggedIn: true,
             loggedInUser: user.email,
+            admin: true,
           });
           reply.redirect('/admin');
       }).catch(err => {
@@ -76,5 +77,4 @@ exports.register = {
       reply.redirect('/');
     });
   },
-
 };
