@@ -1,0 +1,32 @@
+
+
+<!-- List of all the user's tweet's -->
+{{#each tweets}}
+  <!-- Displays a view of a single tweet -->
+  <section class="ui stacked segment">
+    <div class="ui three column grid">
+      <div class="ui row">
+        <div class="ui four wide column">
+        </div>
+        <div class="ui column">
+          <h5>{{date}}</h5>
+        </div>
+
+        <!-- Checkbox for deletion selection -->
+        <div class="ui right aligned column">
+          <div class="ui slider checkbox">
+            <label><i class="mini circular inverted red close icon"></i></label>
+            <input type="checkbox" name="{{_id}}">
+          </div>
+        </div>
+      </div>
+
+      <!-- content -->
+      <div class="ui row">
+        <div class="ui right floated twelve wide column">
+          {{content}}
+        </div>
+      </div>
+    </div>
+  </section>
+{{/each}}

@@ -14,12 +14,22 @@
     {{{content}}}
 </section>
 <script>
-  $('.ui.accordion')
-      .accordion();
+  $('.ui.accordion').accordion();
 
   $('.ui.slider.checkbox').checkbox();
 
+  $('.ui.dropdown').dropdown();
+
   $('#selectall').change(function() {
+    const checkboxes = $(this).closest('form').find(':checkbox');
+    if($(this).is(':checked')) {
+      checkboxes.prop('checked', true);
+    } else {
+      checkboxes.prop('checked', false);
+    }
+  });
+
+  $('#selectalltweets').change(function() {
     const checkboxes = $(this).closest('form').find(':checkbox');
     if($(this).is(':checked')) {
       checkboxes.prop('checked', true);

@@ -1,5 +1,10 @@
-<!-- An individual user's profile page to display their tweets -->
-{{> homemenu }}
+<!-- An administrator dashboard page  -->
+<nav class="ui secondary pointing menu">
+  <header class="header item"><a href="/admin">MyTweet</a></header>
+  <div class="right menu">
+    <a class="item" href="/logout">Logout</a>
+  </div>
+</nav>
 
 <section class="ui raised segment">
 
@@ -12,13 +17,16 @@
   </div>
 
   <!-- Main content -->
-  <div class="ui two column stackable grid">
+  <div class="ui three column stackable grid">
+
+    <!-- Register new user -->
     <div class="ui six wide column">
-      {{> deleteusers}}
+      <h3>Add user</h3>
       <div class="ui accordion">
         <div class="title">
           <button class="ui violet basic button">Add New User</button>
         </div>
+        <!-- Accordian view form, exposed when button clicked -->
         <div class="content">
           <div class="ui grid">
             <div class="ui sixteen wide column">
@@ -31,8 +39,62 @@
           </div>
         </div>
       </div>
+
+      <!-- Remove users -->
+      <h3>Remove user</h3>
+      {{> deleteusers}}
     </div>
-    <div class="ui four wide column">
+
+    <div class="ui two wide column">
     </div>
+    <div class="ui six wide column">
+
+      <!-- Remove tweets for an individual user -->
+      <h3>Remove MyTweets for a user</h3>
+      <form class="ui form" method="POST" action="/selectUser">
+        <div class="ui two column grid">
+          <div class="ui left aligned column">
+            <select name="user" class="ui dropdown">
+              <option selected="selected" disabled="disabled">{{userName}}</option>
+              {{#each users}}
+                <option value="{{_id}}">{{firstName}} {{lastName}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="ui right aligned column">
+            <button class="ui violet basic button">Select User</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Accordian view form, exposed when button clicked -->
+      <div class="content">
+        <div class="ui grid">
+          <div class="ui sixteen wide column">
+            <div class="ui stacked fluid form segment">
+              <form action="/admindeletetweets" method="POST">
+
+                <!-- Checkbox allowing allTweet selection & delete button -->
+                <div class="ui two column grid">
+                  <div class="ui left bottom aligned column">
+                    <div class="ui slider checkbox all">
+                      <label>Select all MyTweets</label>
+                      <input id="selectalltweets" type="checkbox">
+                    </div>
+                  </div>
+                  <div class="ui right aligned column">
+                    <a href="/">
+                      <button class="ui red basic button">Delete MyTweets</button>
+                    </a>
+                  </div>
+                </div>
+                {{> deletetweetlist }}
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   </div>
 </section>

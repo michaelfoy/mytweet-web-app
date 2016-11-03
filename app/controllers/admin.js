@@ -20,6 +20,7 @@ exports.home = {
 
 exports.deleteuser = {
   handler: function (request, reply) {
+    let nothing;
     const data = request.payload;
     const usersArray = Object.keys(data);
 
@@ -30,20 +31,20 @@ exports.deleteuser = {
         console.log('User deleted: ' + usersArray[i]);
       }).catch(err => {
         console.Log("Unable to get users from db");
-        reply.redirect('/admin');
-      });
-
-
-      Tweet.find({ tweeter: usersArray[i]}, function(err, userTweets) {
-        userTweets.forEach(function(tweet) {
-          tweet.remove();
+        return null;
+      }).then( nothing => {
+        Tweet.find({tweeter: usersArray[i]}, function (err, userTweets) {
+          userTweets.forEach(function (tweet) {
+            tweet.remove();
+            return null;
+          });
+        }).then(nothing => {
+          reply.redirect('/admin');
+        }).catch(err => {
+          console.Log("Unable to get user tweets from db");
         });
-      }).catch(err => {
-        console.Log("Unable to get user tweets from db");
-        reply.redirect('/admin');
       });
-    };
-    reply.redirect('/admin');
+    }
   },
 };
 
@@ -58,3 +59,45 @@ exports.register = {
     });
   },
 };
+
+exports.selectUser = {
+  handler: function (request, reply) {
+    let userId = request.payload['user'];
+    let users;
+    let tweets;
+
+    if (userId == null) {
+      reply.redirect('/admin');
+    } else {
+
+      Tweet.find({tweeter: userId}, function (err, userTweets) {
+        return userTweets;
+
+      }).then( userTweets => {
+
+        User.find({}).then(foundUsers => {
+          users = foundUsers;
+          tweets = userTweets;
+          reply.view('adminhome', {
+            title: 'Administrator',
+            users: users,
+            tweets: tweets,
+          });
+        }).catch(err => {
+          console.log('Unable to get users from db');
+          reply.redirect('/admin');
+        })
+      }).catch(err => {
+        console.log('Unable to get tweets for user: ' + userId);
+        reply.redirect('/admin');
+      });
+    }
+  }
+};
+
+exports.test = {
+  handler: function (request, reply) {
+    const userTweets = request.params.tweets;
+    console.log(userTweets);
+  }
+}

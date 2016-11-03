@@ -19,6 +19,8 @@ module.exports = [
   { method: 'GET', path: '/admin', config: Admin.home },
   { method: 'POST', path: '/deleteUser', config: Admin.deleteuser },
   { method: 'POST', path: '/adminregister', config: Admin.register },
+  { method: 'POST', path: '/selectUser', config: Admin.selectUser },
+  { method: 'POST', path: '/test/{tweets}', config: Admin.test },
 
 
 ];
