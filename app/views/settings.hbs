@@ -1,0 +1,19 @@
+<!-- Logged-in user's home page -->
+{{> homemenu }}
+
+<section class="ui raised segment">
+  <!-- Header -->
+  <h2>Adjust User Details</h2>
+
+  <!-- Divider between header and main content -->
+  <div class="ui horizontal divider header">
+    <i class="comments icon"></i>
+  </div>
+
+  <!-- Main content -->
+  <section class="ui stacked fluid form segment">
+  <form action="/updateSettings" method="POST">
+    {{> registeruser }}
+  </form>
+    </section>
+</section>

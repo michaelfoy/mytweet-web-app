@@ -11,6 +11,9 @@ module.exports = [
   { method: 'POST', path: '/login', config: Accounts.authenticate },
   { method: 'GET', path: '/logout', config: Accounts.logout },
   { method: 'POST', path: '/register', config: Accounts.register },
+  { method: 'GET', path: '/viewSettings', config: Accounts.viewSettings },
+  { method: 'POST', path: '/updateSettings', config: Accounts.updateSettings },
+
 
   { method: 'GET', path: '/home', config: MyTweet.home },
   { method: 'POST', path: '/newTweet', config: MyTweet.newTweet },

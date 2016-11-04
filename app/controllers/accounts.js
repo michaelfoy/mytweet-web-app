@@ -2,6 +2,9 @@ const User = require('../models/user');
 const Admin = require('../models/admin');
 const Joi = require('joi');
 
+/*
+Loads the welcome page
+ */
 exports.index = {
   auth: false,
   handler: (request, reply) => {
@@ -9,6 +12,9 @@ exports.index = {
   },
 };
 
+/*
+Loads the sign up page
+ */
 exports.signup = {
   auth: false,
   handler: (request, reply) => {
@@ -16,6 +22,9 @@ exports.signup = {
   },
 };
 
+/*
+Loads the log in page
+ */
 exports.login = {
   auth: false,
   handler: (request, reply) => {
@@ -23,6 +32,11 @@ exports.login = {
   },
 };
 
+/*
+Authenticates a user's login details
+If successful, loads the user's homepage
+If user has administrator password, loads the admin dashboard
+ */
 exports.authenticate = {
   auth: false,
 
@@ -44,6 +58,8 @@ exports.authenticate = {
 
   handler: function (request, reply) {
     const user = request.payload;
+
+    // if user has admin password, load admin dashboard
     if (user.password === "adminsecret") {
       Admin.findOne({email: user.email}).then(foundUser => {
           request.cookieAuth.set({
@@ -57,6 +73,7 @@ exports.authenticate = {
         console.log("Unable to find admin account")
       });
 
+    // if log in details valid, load user's homepage
     } else {
         User.findOne({email: user.email}).then(foundUser => {
           if (foundUser && foundUser.password === user.password) {
@@ -77,6 +94,9 @@ exports.authenticate = {
   },
 };
 
+/*
+Logs a user out
+ */
 exports.logout = {
   auth: false,
   handler: function (request, reply) {
@@ -85,6 +105,9 @@ exports.logout = {
   },
 };
 
+/*
+Registers a new user to the db
+ */
 exports.register = {
   auth: false,
 
@@ -110,6 +133,35 @@ exports.register = {
     const user = new User(request.payload);
     user.save().then(newUser => {
       reply.redirect('/login');
+    }).catch(err => {
+      reply.redirect('/');
+    });
+  },
+};
+
+exports.viewSettings = {
+  handler: function (request, reply) {
+    const userEmail = request.auth.credentials.loggedInUser;
+    User.findOne({ email: userEmail }).then(foundUser => {
+      reply.view('settings', { title: 'Edit Account Settings', user: foundUser });
+    }).catch(err => {
+      reply.redirect('/');
+    });
+  },
+};
+
+exports.updateSettings = {
+  handler: function (request, reply) {
+    const loggedInUserEmail = request.auth.credentials.loggedInUser;
+    const editedUser = request.payload;
+    User.findOne({ email: loggedInUserEmail }).then(user => {
+      if (!(editedUser.firstName === "")) { user.firstName = editedUser.firstName; }
+      if (!(editedUser.lastName === "")) { user.lastName = editedUser.lastName; }
+      if (!(editedUser.email === "")) { user.email = editedUser.email; }
+      if (!(editedUser.password === "")) { user.password = editedUser.password; }
+      return user.save();
+    }).then(user => {
+      reply.redirect('/home');
     }).catch(err => {
       reply.redirect('/');
     });
