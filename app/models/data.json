@@ -6,14 +6,36 @@
       "lastName": "Simpson",
       "email": "homer@simpson.com",
       "password": "secret"
+    },
+    "marge": {
+      "firstName": "Marge",
+      "lastName": "Simpson",
+      "email": "marge@simpson.com",
+      "password": "secret"
+    },
+    "bart": {
+      "firstName": "Bart",
+      "lastName": "Simpson",
+      "email": "bart@simpson.com",
+      "password": "secret"
     }
   },
   "tweets": {
     "_model": "Tweet",
     "one": {
-      "content": "First tweet",
+      "content": "homer tweet",
       "date": "04/11/2016 - 12:41",
       "tweeter": "->users.homer"
+    },
+    "two": {
+      "content": "marge tweet",
+      "date": "04/11/2016 - 12:41",
+      "tweeter": "->users.marge"
+    },
+    "three": {
+      "content": "bart tweet",
+      "date": "04/11/2016 - 12:41",
+      "tweeter": "->users.bart"
     }
   }
 }

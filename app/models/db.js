@@ -13,10 +13,20 @@ if (process.env.NODE_ENV === 'production') {
 
 mongoose.connect(dbURI);
 
-//mongoose.connection.db.dropDatabase();
-
 mongoose.connection.on('connected', function () {
   console.log('Mongoose connected to ' + dbURI);
+  if (process.env.NODE_ENV != 'production') {
+    var seeder = require('mongoose-seeder');
+    const data = require('./data.json');
+    const Tweet = require('./tweet');
+    const User = require('./user');
+    seeder.seed(data, { dropDatabase: false, dropCollections: true }).then(dbData => {
+      console.log('preloading Test Data');
+      console.log(dbData);
+    }).catch(err => {
+      console.log(error);
+    });
+  }
 });
 
 mongoose.connection.on('error', function (err) {
