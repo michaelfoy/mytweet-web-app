@@ -4,10 +4,11 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 let dbURI = 'mongodb://localhost/mytweet';
-// mongodb://donationuser:donationuser@ds061288.mlab.com:61288/donation
+    //'mongodb://michaelfoy:adminsecret@ds143717.mlab.com:43717/mytweet'
+   // 'mongodb://localhost/mytweet';
 
 if (process.env.NODE_ENV === 'production') {
-  dbURI = process.env.MONGOLAB_URI;;
+  dbURI = process.env.MONGOLAB_URI;
 }
 
 mongoose.connect(dbURI);
