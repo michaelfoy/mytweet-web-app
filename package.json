@@ -15,6 +15,7 @@
     "inert": "^4.0.2",
     "joi": "^9.1.0",
     "mongoose": "^4.6.4",
+    "mongoose-seeder": "^1.2.1",
     "vision": "^4.1.0"
   }
 }

@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const Admin = require('../models/admin');
+const Joi = require('joi');
 
 exports.index = {
   auth: false,
@@ -24,6 +25,23 @@ exports.login = {
 
 exports.authenticate = {
   auth: false,
+
+  validate: {
+
+    payload: {
+      email: Joi.string().email().required(),
+      password: Joi.string().required(),
+    },
+
+    failAction: function (request, reply, source, error) {
+      reply.view('login', {
+        title: 'Log in error',
+        errors: error.data.details,
+      }).code(400);
+    },
+
+  },
+
   handler: function (request, reply) {
     const user = request.payload;
     if (user.password === "adminsecret") {
@@ -69,6 +87,25 @@ exports.logout = {
 
 exports.register = {
   auth: false,
+
+  validate: {
+
+    payload: {
+      firstName: Joi.string().required(),
+      lastName: Joi.string().required(),
+      email: Joi.string().email().required(),
+      password: Joi.string().required(),
+    },
+
+    failAction: function (request, reply, source, error) {
+      reply.view('signup', {
+        title: 'Sign up error',
+        errors: error.data.details,
+      }).code(400);
+    },
+
+  },
+
   handler: function (request, reply) {
     const user = new User(request.payload);
     user.save().then(newUser => {

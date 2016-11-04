@@ -1,6 +1,7 @@
 const Accounts = require('./app/controllers/accounts.js');
 const MyTweet = require('./app/controllers/mytweet.js');
 const Admin = require('./app/controllers/admin.js');
+const Assets = require('./app/controllers/assets.js')
 
 module.exports = [
 
@@ -21,5 +22,7 @@ module.exports = [
   { method: 'POST', path: '/adminregister', config: Admin.register },
   { method: 'POST', path: '/selectUser', config: Admin.selectUser },
   { method: 'POST', path: '/admindeletetweets', config: Admin.deletetweets },
+
+  { method: 'GET', path: '/{param*}', config: { auth: false }, handler: Assets.servePublicDirectory, },
 
 ];

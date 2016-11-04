@@ -7,7 +7,7 @@ let dbURI = 'mongodb://localhost/mytweet';
 // mongodb://donationuser:donationuser@ds061288.mlab.com:61288/donation
 
 if (process.env.NODE_ENV === 'production') {
-  dbURI = process.env.MONGOLAB_URI;
+  dbURI = process.env.MONGOLAB_URI;;
 }
 
 mongoose.connect(dbURI);
