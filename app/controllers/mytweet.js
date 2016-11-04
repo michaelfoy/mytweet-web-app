@@ -2,6 +2,9 @@
 const Tweet = require('../models/tweet');
 const User = require('../models/user');
 
+/*
+Displays the home
+ */
 exports.home = {
   handler: function (request, reply) {
     let foundUser;

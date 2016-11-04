@@ -8,6 +8,7 @@ exports.home = {
     let users;
     User.find({}).then(foundUsers => {
       users = foundUsers;
+
       reply.view('adminhome', {
         title: 'Administrator',
         users: users,
