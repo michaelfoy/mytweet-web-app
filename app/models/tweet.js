@@ -2,6 +2,9 @@
 
 const mongoose = require('mongoose');
 
+/**
+ * Model for tweet object
+ */
 const tweetSchema = mongoose.Schema({
   content: String,
   date: String,

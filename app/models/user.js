@@ -2,6 +2,9 @@
 
 const mongoose = require('mongoose');
 
+/**
+ * Model for user object
+ */
 const userSchema = mongoose.Schema({
   firstName: String,
   lastName: String,

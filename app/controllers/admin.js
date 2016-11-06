@@ -3,6 +3,9 @@ const Tweet = require('../models/tweet');
 const User = require('../models/user');
 const Joi = require('joi');
 
+/**
+ * Loads the administrator dashboard view
+ */
 exports.home = {
   handler: function (request, reply) {
     let users;
@@ -20,9 +23,11 @@ exports.home = {
   }
 };
 
+/**
+ * Deletes users from the db
+ */
 exports.deleteuser = {
   handler: function (request, reply) {
-    let nothing;
     const data = request.payload;
     const usersArray = Object.keys(data);
 
@@ -50,6 +55,9 @@ exports.deleteuser = {
   },
 };
 
+/**
+ * Deletes tweets from the db
+ */
 exports.deletetweets = {
   handler: function (request, reply) {
     const data = request.payload;
@@ -66,6 +74,9 @@ exports.deletetweets = {
   },
 };
 
+/**
+ * Registers a new user
+ */
 exports.register = {
 
   validate: {

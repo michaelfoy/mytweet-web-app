@@ -103,6 +103,7 @@ exports.newTweet = {
   handler: (request, reply) => {
     let data = request.payload;
     console.log('Creating new tweet: ' + data['content']);
+    console.log('Creating new tweet: ' + data['photo']);
 
     // Checks that the tweet contains at least one character
     if (data['content'].length >= 1) {
@@ -115,7 +116,7 @@ exports.newTweet = {
       }).then(newTweet => {
         reply.redirect('/home');
       }).catch(err => {
-        console.log("Internal error")
+        console.log("Internal error");
         reply.redirect('/');
       });
     } else {
@@ -124,6 +125,9 @@ exports.newTweet = {
   },
 };
 
+/**
+ * Deletes selected tweets
+ */
 exports.delete = {
   handler: function (request, reply) {
     const userEmail = request.params.email;

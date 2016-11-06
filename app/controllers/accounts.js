@@ -1,5 +1,4 @@
 const User = require('../models/user');
-const Admin = require('../models/admin');
 const Joi = require('joi');
 
 /**
@@ -94,7 +93,7 @@ exports.authenticate = {
   },
 };
 
-/*
+/**
 Logs a user out
  */
 exports.logout = {

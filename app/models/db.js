@@ -3,6 +3,9 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
+/**
+ * Seeds the mongo database with default data
+ */
 const seedDb = function() {
   let seeder = require('mongoose-seeder');
   const data = require('./data.json');
