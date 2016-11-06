@@ -2,8 +2,8 @@
 const Tweet = require('../models/tweet');
 const User = require('../models/user');
 
-/*
-Displays the home
+/**
+ * Displays the homepage
  */
 exports.home = {
   handler: function (request, reply) {
@@ -42,15 +42,20 @@ exports.home = {
   },
 };
 
+/**
+ * Displays an individual profile page,
+ * if publicPage == true, a public profile is displayed
+ * else, a logged-in user's own private profile
+ */
 exports.profilepage = {
   handler: function (request, reply) {
     let publicPage = true;
     let findEmail;
     let data = request.params.email;
-    let userTweets = [];
     let foundUser;
     const loggedInUserEmail = request.auth.credentials.loggedInUser;
 
+    // Check if the page belongs to logged-in user
     if (loggedInUserEmail === data) {
       publicPage = false;
       findEmail = loggedInUserEmail;
@@ -91,21 +96,31 @@ exports.profilepage = {
   },
 };
 
-
+/**
+ * Creates a new tweet, returns to homepage
+ */
 exports.newTweet = {
   handler: (request, reply) => {
-    const userEmail = request.auth.credentials.loggedInUser;
-    User.findOne({email: userEmail}).then(user => {
-      let data = request.payload;
-      const tweet = new Tweet(data);
-      tweet.tweeter = user._id;
-      tweet.date = getDate();
-      return tweet.save();
-    }).then(newTweet => {
+    let data = request.payload;
+    console.log('Creating new tweet: ' + data['content']);
+
+    // Checks that the tweet contains at least one character
+    if (data['content'].length >= 1) {
+      const userEmail = request.auth.credentials.loggedInUser;
+      User.findOne({email: userEmail}).then(user => {
+        const tweet = new Tweet(data);
+        tweet.tweeter = user._id;
+        tweet.date = getDate();
+        return tweet.save();
+      }).then(newTweet => {
+        reply.redirect('/home');
+      }).catch(err => {
+        console.log("Internal error")
+        reply.redirect('/');
+      });
+    } else {
       reply.redirect('/home');
-    }).catch(err => {
-      reply.redirect('/');
-    });
+    }
   },
 };
 

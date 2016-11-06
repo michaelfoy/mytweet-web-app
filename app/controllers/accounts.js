@@ -2,7 +2,7 @@ const User = require('../models/user');
 const Admin = require('../models/admin');
 const Joi = require('joi');
 
-/*
+/**
 Loads the welcome page
  */
 exports.index = {
@@ -12,7 +12,7 @@ exports.index = {
   },
 };
 
-/*
+/**
 Loads the sign up page
  */
 exports.signup = {
@@ -22,7 +22,7 @@ exports.signup = {
   },
 };
 
-/*
+/**
 Loads the log in page
  */
 exports.login = {
@@ -32,7 +32,7 @@ exports.login = {
   },
 };
 
-/*
+/**
 Authenticates a user's login details
 If successful, loads the user's homepage
 If user has administrator password, loads the admin dashboard
@@ -105,8 +105,8 @@ exports.logout = {
   },
 };
 
-/*
-Registers a new user to the db
+/**
+ * Registers a new user to the db
  */
 exports.register = {
   auth: false,
@@ -139,6 +139,9 @@ exports.register = {
   },
 };
 
+/**
+ * Displays the settings page
+ */
 exports.viewSettings = {
   handler: function (request, reply) {
     const userEmail = request.auth.credentials.loggedInUser;
@@ -150,6 +153,9 @@ exports.viewSettings = {
   },
 };
 
+/**
+ * Updates a user's account settings
+ */
 exports.updateSettings = {
   handler: function (request, reply) {
     const loggedInUserEmail = request.auth.credentials.loggedInUser;

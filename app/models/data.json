@@ -18,6 +18,12 @@
       "lastName": "Simpson",
       "email": "bart@simpson.com",
       "password": "secret"
+    },
+    "gary": {
+      "firstName": "Gary",
+      "lastName": "Edams",
+      "email": "gary@edams.com",
+      "password": "secret"
     }
   },
   "tweets": {
@@ -36,6 +42,46 @@
       "content": "bart tweet",
       "date": "04/11/2016 - 12:41",
       "tweeter": "->users.bart"
+    },
+    "four": {
+      "content": "Last night & the night b4 I met a fox in the city centre. At the same time. In the same place. S/he seemed as surprised as me.",
+      "date": "13/01/2016 - 08:54",
+      "tweeter": "->users.gary"
+    },
+    "five": {
+      "content": "My bestest pressie! The Queen of all rubber ducks. A high class act. Kinda ducky ar lá dee dah! Epsom Salts go deo!",
+      "date": "27/12/2013 - 18:25",
+      "tweeter": "->users.gary"
+    },
+    "six": {
+      "content": "Every1 else gotta strawberry on their Pavlova except me!! Why?",
+      "date": "26/01/2014 - 19:00",
+      "tweeter": "->users.gary"
+    },
+    "seven": {
+      "content": "Each night I ask the stars up above. Why must I b a teenager in love?",
+      "date": "03/06/2013 - 08:55",
+      "tweeter": "->users.gary"
+    },
+    "eight": {
+      "content": "Ryan Turbidy & the way he might look @ you.",
+      "date": "24/11/2015 - 09:37",
+      "tweeter": "->users.gary"
+    },
+    "nine": {
+      "content": "Predictive text is a curse. Soda hiss.",
+      "date": "02/12/2015 - 08:08",
+      "tweeter": "->users.gary"
+    },
+    "ten": {
+      "content": "What's an 0 between friends. Or between Xs.",
+      "date": "12/12/2015 - 12:16",
+      "tweeter": "->users.gary"
+    },
+    "eleven": {
+      "content": "A sprig of mistletoe in the lift in Leinster House. Just saying. See u there @ 9 in morning.",
+      "date": "15/12/2015 - 22:46",
+      "tweeter": "->users.gary"
     }
   }
 }
