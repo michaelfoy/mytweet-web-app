@@ -60,7 +60,7 @@ exports.authenticate = {
 
     // if user has admin password, load admin dashboard
     if (user.password === "adminsecret") {
-      Admin.findOne({email: user.email}).then(foundUser => {
+      User.findOne({email: user.email}).then(foundUser => {
           request.cookieAuth.set({
             loggedIn: true,
             loggedInUser: user.email,
